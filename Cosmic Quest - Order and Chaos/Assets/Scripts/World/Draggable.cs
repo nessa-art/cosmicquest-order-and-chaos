@@ -20,7 +20,6 @@ public class Draggable : Interactable
 
     public override void Interact(Transform target)
     {
-
         if (isHeld) //drop if held
             {
                 this.Dropped();
