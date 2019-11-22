@@ -15,19 +15,22 @@ public class Destination : MonoBehaviour
 		return active;
 	}
 
- //   void OnTriggerEnter(Collider other) //when something enters its collider
-	//{
-	//	if (!active && other.keyID == keyID ) // if it is not already full, and the keyIDs match
-	//	{
-	//		lockToPosition(other); //lock the other to its position
-	//		active = true;//and set this destination to active
-	//	}
-	//}
+ void OnTriggerEnter(Collider other) //when something enters its collider
+	{
+		string otherKey = other.gameObject.GetComponent<KeyObj>().keyID;
+		if (!active && keyID == otherKey ) // if it is not already full, and the keyIDs match
+		{
+			lockToPosition(other); //lock the other to its position
+			active = true;//and set this destination to active
+		}
+	}
 
-	//private void lockToPosition(Collider other)
-	//{
-	//	//TODO, FUNCTIONALITY FOR THIS
-	//	Debug.Log("Locked in " + other.name);
-	//}
+	private void lockToPosition(Collider other)
+	{
+		//TODO, FUNCTIONALITY FOR THIS
+		Debug.Log("Locked in " + other.name);
+		other.gameObject.GetComponent<Transform>().position = GetComponent<Transform>().position;
+		other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll; // freeze object in place, and disallow rotation
+	}
 
 }
