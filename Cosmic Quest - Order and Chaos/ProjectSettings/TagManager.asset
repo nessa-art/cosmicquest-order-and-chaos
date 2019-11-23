@@ -10,6 +10,8 @@ TagManager:
   - Lever
   - Rock
   - Platform
+  - Yellow
+  - Red
   layers:
   - Default
   - TransparentFX
