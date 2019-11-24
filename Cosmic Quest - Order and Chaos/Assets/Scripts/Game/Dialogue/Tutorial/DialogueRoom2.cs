@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueRoom2 : MonoBehaviour
 {
-    Animator anim; // Leol animation
+    public Animator anim; // Leol animation
     
     // Start is called before the first frame update
     void Start()
