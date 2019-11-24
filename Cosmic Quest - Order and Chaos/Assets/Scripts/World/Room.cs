@@ -1,16 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 
 // Base class for Chaos Void rooms
 public class Room : MonoBehaviour
 {
-    public Animator Anim;   // Door animation to be played when all puzzles have been solved
+    public Animator Anim;           // Door animation to be played when all puzzles have been solved
     protected Collider m_Collider;  // Collider of the door
-    protected List<GameObject> m_Enemies;   // All enemies in the room
-    protected GameObject[] m_Levers;    // All levers in the room
+   
+    protected List<GameObject> m_Enemies; // All enemies in the room
+   
     protected GameObject[] m_Platforms; // All rock platforms in the room
-    
+
+    protected GameObject[] m_Levers;    // All levers in the room
+    protected string m_LeverOrder;        // Hard-coded lever pattern to unlock the room.
+    public StringBuilder LeverInput;  // Pattern of lever input from players. 
+
     void Awake ()
     {
         // Track all rock platforms in the room
@@ -44,6 +50,7 @@ public class Room : MonoBehaviour
             {
                 // If a platform hasn't been activated yet, return false
                 platformsActivated = false;
+                break;
             }
         }
 
@@ -66,6 +73,7 @@ public class Room : MonoBehaviour
             {
                 // If at least 1 lever isn't activated, return false
                 leversPulled = false;
+                break;
             }
         }
 
