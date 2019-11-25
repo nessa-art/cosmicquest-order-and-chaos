@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -9,6 +10,8 @@ public class EnemyStatsController : EntityStatsController
 {
     private EnemyBrainController _brain;
     private NavMeshAgent _agent;
+
+    public GameObject FloatingText;
 
     protected override void Awake()
     {
@@ -33,7 +36,8 @@ public class EnemyStatsController : EntityStatsController
         // Calculate any changes based on stats and modifiers here first
         float hitValue = (damageValue - ComputeDefenseModifier()) * timeModifier;
         health.Subtract(hitValue < 0 ? 0 : hitValue);
-        
+        ShowDamage(hitValue);
+
         // Pass damage information to brain
         _brain.OnDamageTaken(attacker.gameObject, hitValue);
         
@@ -43,6 +47,18 @@ public class EnemyStatsController : EntityStatsController
         {
             Die();
         }
+    }
+
+    public void ShowDamage(float damage, float duration = 0.5f)
+    {
+        Vector3 offset = new Vector3(0, 5f, 0); // Want to do this dynamically based off enemy height
+        float x = 1f, y = 0.5f;
+        Vector3 random = new Vector3(Random.Range(-x, x), Random.Range(-y, y));
+
+        GameObject text = Instantiate(FloatingText, transform.position + offset + random, Quaternion.identity, transform);
+        text.GetComponent<TMP_Text>().text = damage.ToString("F1");
+
+        Destroy(text, duration);
     }
 
     protected override IEnumerator ApplyExplosiveForce(float explosionForce, Vector3 explosionPoint, float explosionRadius, float stunTime)
