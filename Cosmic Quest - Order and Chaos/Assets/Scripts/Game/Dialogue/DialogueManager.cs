@@ -22,8 +22,8 @@ public class DialogueManager : MonoBehaviour
             Destroy(this);
 
         sentences = new Queue<string>();
-        dialogueName.text = "";
-        dialogueText.text = "";
+        //dialogueName.text = "";
+        //dialogueText.text = "";
     }
 
     public void StartDialogue(Dialogue dialogue, bool interactable)

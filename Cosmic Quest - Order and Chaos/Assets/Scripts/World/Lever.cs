@@ -12,7 +12,7 @@ public class Lever : Interactable
     private void Start()
     {
         Anim = gameObject.GetComponent<Animator>();
-        LeverInput = gameObject.GetComponent<Lvl1Room1>().LeverInput;
+        //LeverInput = gameObject.GetComponent<Lvl1Room1>().LeverInput;
     }
 
     private void Reset()
