@@ -16,8 +16,8 @@ namespace Tests
             entityStats.defense = new Stat();
             entityStats.health = new RegenerableStat();
 
-            entityStats.damage.BaseValue = 10;
-            entityStats.defense.BaseValue = 10;
+            entityStats.damage.baseValue = 10;
+            entityStats.defense.baseValue = 10;
             entityStats.health.maxValue = 100f;
             entityStats.health.Init();
         }
@@ -31,10 +31,10 @@ namespace Tests
         [Test]
         public void EntityStatsController_ComputeDamageModifer_ShouldCalculateDamageWithinCorrectRange()
         {
-            entityStats.damage.BaseValue = 10;
+            entityStats.damage.baseValue = 10;
 
             float damageModifier = entityStats.ComputeDamageModifer();
-            float baseDamage = entityStats.damage.GetBaseValue();
+            float baseDamage = entityStats.damage.baseValue;
 
             Assert.IsTrue(0f <= damageModifier && damageModifier <= baseDamage);
         }
@@ -60,7 +60,7 @@ namespace Tests
         public void EntityStatsController_ComputeDefenseModifer_ShouldCalculateDefenseWithinCorrectRange()
         {
             float defenseModifier = entityStats.ComputeDefenseModifier();
-            float baseDefense = entityStats.defense.GetBaseValue();
+            float baseDefense = entityStats.defense.baseValue;
 
             Assert.IsTrue(0f <= defenseModifier && defenseModifier <= baseDefense);
         }

@@ -1,36 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// class for items which are collected on interact
+/// Class for items which are collected on interact
 /// </summary>
-public class Collectable : Interactable //inherits from interactable
+public class Collectable : Interactable
 {
+    // TODO will need a generalized class for including power-ups
+    public Equipment item;
+    
     /// <summary>
     /// Handles the start of an interaction event with a player
     /// </summary>
     /// <param name="target">The Transform who interacted with this object</param>
     public override void StartInteract(Transform target)
     {
-        // This function is intended to be overriden
         if (CanInteract(target))
         {
-            Debug.Log("Picked up by " + target.name);
-            //TODO: Add functionality later
-            Destroy(gameObject);
+            // Player attempts to pick up the item
+            bool pickedUp = target.GetComponent<PlayerStatsController>().inventory.Add(item);
+            
+            // Remove item from scene if successfully picked up
+            if (pickedUp)
+                Destroy(gameObject);
         }
     }
-    
-    /// <summary>
-    /// Handles the end of the interaction event with a player. This function is not necessary for one-time interactions.
-    /// </summary>
-    /// <param name="target">The Transform who interacted with this object</param>
-    public override void StopInteract(Transform target)
-    {
-        // This function is intended to be overriden
-        Debug.Log("WARNING: stopinteract on Collectable shouldn't be reachable");
-    }
-
-    
 }

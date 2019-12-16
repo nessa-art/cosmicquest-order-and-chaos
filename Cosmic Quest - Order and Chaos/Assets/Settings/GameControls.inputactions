@@ -52,6 +52,22 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "CycleNextWeapon",
+                    "type": "Button",
+                    "id": "c28ede22-741f-44df-86f9-abd8900bc307",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "CyclePreviousWeapon",
+                    "type": "Button",
+                    "id": "4f1728da-2e8f-423b-b885-27df0fdeefab",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -217,6 +233,28 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "UltimateAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c923625-370e-45ba-b1c2-f1cca15cc3d5",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "CycleNextWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db9fab4f-d155-412c-95d5-fac24501250f",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "CyclePreviousWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

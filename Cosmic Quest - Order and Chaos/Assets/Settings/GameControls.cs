@@ -1,14 +1,15 @@
 // GENERATED AUTOMATICALLY FROM 'Assets/Settings/GameControls.inputactions'
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class GameControls : IInputActionCollection
+public class @GameControls : IInputActionCollection, IDisposable
 {
     private InputActionAsset asset;
-    public GameControls()
+    public @GameControls()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""GameControls"",
@@ -61,6 +62,22 @@ public class GameControls : IInputActionCollection
                     ""name"": ""UltimateAbility"",
                     ""type"": ""Button"",
                     ""id"": ""c9be423e-0edd-45eb-857e-3609d971d47d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""CycleNextWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""c28ede22-741f-44df-86f9-abd8900bc307"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""CyclePreviousWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""4f1728da-2e8f-423b-b885-27df0fdeefab"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -231,6 +248,28 @@ public class GameControls : IInputActionCollection
                     ""action"": ""UltimateAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c923625-370e-45ba-b1c2-f1cca15cc3d5"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CycleNextWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db9fab4f-d155-412c-95d5-fac24501250f"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CyclePreviousWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -273,9 +312,11 @@ public class GameControls : IInputActionCollection
         m_Player_SecondaryAttack = m_Player.FindAction("SecondaryAttack", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_UltimateAbility = m_Player.FindAction("UltimateAbility", throwIfNotFound: true);
+        m_Player_CycleNextWeapon = m_Player.FindAction("CycleNextWeapon", throwIfNotFound: true);
+        m_Player_CyclePreviousWeapon = m_Player.FindAction("CyclePreviousWeapon", throwIfNotFound: true);
     }
 
-    ~GameControls()
+    public void Dispose()
     {
         UnityEngine.Object.Destroy(asset);
     }
@@ -328,16 +369,20 @@ public class GameControls : IInputActionCollection
     private readonly InputAction m_Player_SecondaryAttack;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_UltimateAbility;
+    private readonly InputAction m_Player_CycleNextWeapon;
+    private readonly InputAction m_Player_CyclePreviousWeapon;
     public struct PlayerActions
     {
-        private GameControls m_Wrapper;
-        public PlayerActions(GameControls wrapper) { m_Wrapper = wrapper; }
+        private @GameControls m_Wrapper;
+        public PlayerActions(@GameControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @PrimaryAttack => m_Wrapper.m_Player_PrimaryAttack;
         public InputAction @SecondaryAttack => m_Wrapper.m_Player_SecondaryAttack;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @UltimateAbility => m_Wrapper.m_Player_UltimateAbility;
+        public InputAction @CycleNextWeapon => m_Wrapper.m_Player_CycleNextWeapon;
+        public InputAction @CyclePreviousWeapon => m_Wrapper.m_Player_CyclePreviousWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -347,46 +392,58 @@ public class GameControls : IInputActionCollection
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                PrimaryAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryAttack;
-                PrimaryAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryAttack;
-                PrimaryAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryAttack;
-                SecondaryAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryAttack;
-                SecondaryAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryAttack;
-                SecondaryAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryAttack;
-                Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                UltimateAbility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUltimateAbility;
-                UltimateAbility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUltimateAbility;
-                UltimateAbility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUltimateAbility;
+                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @PrimaryAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryAttack;
+                @PrimaryAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryAttack;
+                @PrimaryAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryAttack;
+                @SecondaryAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryAttack;
+                @SecondaryAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryAttack;
+                @SecondaryAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryAttack;
+                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @UltimateAbility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUltimateAbility;
+                @UltimateAbility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUltimateAbility;
+                @UltimateAbility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUltimateAbility;
+                @CycleNextWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCycleNextWeapon;
+                @CycleNextWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCycleNextWeapon;
+                @CycleNextWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCycleNextWeapon;
+                @CyclePreviousWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCyclePreviousWeapon;
+                @CyclePreviousWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCyclePreviousWeapon;
+                @CyclePreviousWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCyclePreviousWeapon;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                Move.started += instance.OnMove;
-                Move.performed += instance.OnMove;
-                Move.canceled += instance.OnMove;
-                Look.started += instance.OnLook;
-                Look.performed += instance.OnLook;
-                Look.canceled += instance.OnLook;
-                PrimaryAttack.started += instance.OnPrimaryAttack;
-                PrimaryAttack.performed += instance.OnPrimaryAttack;
-                PrimaryAttack.canceled += instance.OnPrimaryAttack;
-                SecondaryAttack.started += instance.OnSecondaryAttack;
-                SecondaryAttack.performed += instance.OnSecondaryAttack;
-                SecondaryAttack.canceled += instance.OnSecondaryAttack;
-                Interact.started += instance.OnInteract;
-                Interact.performed += instance.OnInteract;
-                Interact.canceled += instance.OnInteract;
-                UltimateAbility.started += instance.OnUltimateAbility;
-                UltimateAbility.performed += instance.OnUltimateAbility;
-                UltimateAbility.canceled += instance.OnUltimateAbility;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
+                @PrimaryAttack.started += instance.OnPrimaryAttack;
+                @PrimaryAttack.performed += instance.OnPrimaryAttack;
+                @PrimaryAttack.canceled += instance.OnPrimaryAttack;
+                @SecondaryAttack.started += instance.OnSecondaryAttack;
+                @SecondaryAttack.performed += instance.OnSecondaryAttack;
+                @SecondaryAttack.canceled += instance.OnSecondaryAttack;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @UltimateAbility.started += instance.OnUltimateAbility;
+                @UltimateAbility.performed += instance.OnUltimateAbility;
+                @UltimateAbility.canceled += instance.OnUltimateAbility;
+                @CycleNextWeapon.started += instance.OnCycleNextWeapon;
+                @CycleNextWeapon.performed += instance.OnCycleNextWeapon;
+                @CycleNextWeapon.canceled += instance.OnCycleNextWeapon;
+                @CyclePreviousWeapon.started += instance.OnCyclePreviousWeapon;
+                @CyclePreviousWeapon.performed += instance.OnCyclePreviousWeapon;
+                @CyclePreviousWeapon.canceled += instance.OnCyclePreviousWeapon;
             }
         }
     }
@@ -417,5 +474,7 @@ public class GameControls : IInputActionCollection
         void OnSecondaryAttack(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnUltimateAbility(InputAction.CallbackContext context);
+        void OnCycleNextWeapon(InputAction.CallbackContext context);
+        void OnCyclePreviousWeapon(InputAction.CallbackContext context);
     }
 }

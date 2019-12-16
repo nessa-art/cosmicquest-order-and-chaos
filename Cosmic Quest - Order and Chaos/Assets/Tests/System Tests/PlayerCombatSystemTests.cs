@@ -249,7 +249,7 @@ public class PlayerCombatSystemTests
         EnemyStatsController enemyStats = enemy.GetComponent<EnemyStatsController>();
         enemyStats.characterColour = CharacterColour.Green;
         enemyStats.health.maxValue = 100f;
-        enemyStats.damage.BaseValue = 20;
+        enemyStats.damage.baseValue = 20;
 
         meleePlayer1.SetActive(true);
         meleePlayer2.SetActive(true);

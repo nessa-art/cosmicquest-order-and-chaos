@@ -55,12 +55,12 @@ public class PlayerMotorController : MonoBehaviour
         Vector3 inputMoveDirection = new Vector3(_moveInput.x, 0f, _moveInput.y) * _speedModifier;
         Vector3 inputLookDirection = new Vector3(_lookInput.x, 0f, _lookInput.y);
 
-        if (_lookInput != Vector2.zero)
+        if (_lookInput != Vector2.zero && !Mathf.Approximately(_speedModifier, 0f))
         {
             // Rotate towards look direction
             _rb.MoveRotation(Quaternion.Slerp(_rb.rotation, Quaternion.LookRotation(inputLookDirection, Vector3.up), rotationSpeed * _speedModifier * Time.deltaTime));
         }
-        else if (_moveInput != Vector2.zero)
+        else if (_moveInput != Vector2.zero && !Mathf.Approximately(_speedModifier, 0f))
         {
             // Rotate towards direction of movement
             _rb.MoveRotation(Quaternion.Slerp(_rb.rotation, Quaternion.LookRotation(inputMoveDirection, Vector3.up), rotationSpeed * _speedModifier * Time.deltaTime));

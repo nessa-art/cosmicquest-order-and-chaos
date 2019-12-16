@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerStatsController : EntityStatsController
 {
     // Player specific stats
     public RegenerableStat mana;
 
+    // Player inventory
+    public Inventory inventory;
+    private Equipment _currentWeapon;
+    
     // player collider
     private Collider _collider;
 
@@ -122,5 +127,40 @@ public class PlayerStatsController : EntityStatsController
         motorController.ApplyMovementModifier(0);
         yield return base.Spawn(obj, speed, delay, cooldown);
         motorController.ResetMovementModifier();
+    }
+    
+    // TODO should we use an equipment manager system instead?
+    private void SetCurrentWeapon(Equipment weapon)
+    {
+        if (_currentWeapon != null)
+        {
+            damage.RemoveModifier(_currentWeapon.damageModifier);
+            defense.RemoveModifier(_currentWeapon.defenseModifer);
+        }
+        damage.AddModifier(weapon.damageModifier);
+        defense.AddModifier(weapon.defenseModifer);
+        _currentWeapon = weapon;
+    }
+
+    private void OnCycleNextWeapon(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            Equipment nextWeapon = inventory.GetNextItem();
+            
+            if (nextWeapon != null)
+                SetCurrentWeapon(nextWeapon);
+        }
+    }
+    
+    private void OnCyclePreviousWeapon(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            Equipment prevWeapon = inventory.GetPreviousItem();
+            
+            if (prevWeapon != null)
+                SetCurrentWeapon(prevWeapon);
+        }
     }
 }

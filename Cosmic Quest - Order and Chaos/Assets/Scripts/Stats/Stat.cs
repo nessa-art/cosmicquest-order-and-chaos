@@ -5,41 +5,25 @@ using UnityEngine;
 [System.Serializable]
 public class Stat
 {
-    [SerializeField] private int baseValue = 0;
+    public int baseValue;
+    private List<int> _modifiers = new List<int>();
 
-    private List<int> modifiers = new List<int>();
-    public int BaseValue
-    {
-        get
-        {
-            return baseValue;
-        }
-        set
-        {
-            baseValue = value;
-        }
-    }
     public int GetValue()
     {
         int value = baseValue;
-        modifiers.ForEach(mod => value += mod);
+        _modifiers.ForEach(mod => value += mod);
         return value;
-    }
-
-    public int GetBaseValue()
-    {
-        return baseValue;
     }
 
     public void AddModifier(int modifier)
     {
         if (modifier != 0)
-            modifiers.Add(modifier);
+            _modifiers.Add(modifier);
     }
 
     public void RemoveModifier(int modifier)
     {
         if (modifier != 0)
-            modifiers.Remove(modifier);
+            _modifiers.Remove(modifier);
     }
 }
