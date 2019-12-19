@@ -7,16 +7,14 @@ public class MenuController : MonoBehaviour
 {
     public void StartTutorial()
     {
-        // TODO: In Build settings, ensure Tutorial.unity is indexed to 1
-        Debug.Log("Set Tutorial.unity to index 1 in build settings");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // Load Tutorial scene
+        SceneManager.LoadScene("Tutorial", LoadSceneMode.Single);
     }
 
-    public void StartLevel1() 
+    public void StartLevel() 
     {
-        // TODO: In Build settings, ensure ChaosVoid1.unity is indexed to 2
-        Debug.Log("Set Tutorial.unity to index 2 in build settings");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        // Load Level 1
+        SceneManager.LoadScene("ChaosVoid1", LoadSceneMode.Single);
     }
 
     public void ExitGame()
