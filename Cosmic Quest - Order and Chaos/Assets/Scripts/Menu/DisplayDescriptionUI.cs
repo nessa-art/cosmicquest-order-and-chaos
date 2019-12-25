@@ -13,12 +13,12 @@ public class DisplayDescriptionUI : MonoBehaviour, IPointerEnterHandler, IPointe
     // Enable backstory text when character is highlighted  
     public void OnPointerEnter(PointerEventData eventData)
     {
-        selectionText.SetActive(true);
+        Description.SetActive(true);
     }   
 
     // Disable backstory text when character is not highlighted anymore
     public void OnPointerExit(PointerEventData eventData)
     {
-        selectionText.SetActive(false);
+        Description.SetActive(false);
     }   
 }
