@@ -43,7 +43,7 @@ public class PlayerManager : MonoBehaviour
     // TODO change this to a pool of textures, or assigned to a player at class selection
     public Texture testPlayerTexture;
 
-    public static List<CharacterColour> availableColours = new List<CharacterColour> { CharacterColour.Red, CharacterColour.Green, CharacterColour.Purple, CharacterColour.Yellow };
+    public static List<CharacterColour> availableColours = new List<CharacterColour> { CharacterColour.Purple, CharacterColour.Green, CharacterColour.Red, CharacterColour.Yellow };
 
     private void Start()
     {
@@ -66,7 +66,7 @@ public class PlayerManager : MonoBehaviour
         Players.Add(player);
 
         // assign the player a colour as soon as they're registered
-        CharacterColour characterColour = availableColours[Random.Range(0, availableColours.Count)];
+        CharacterColour characterColour = availableColours[0];
         availableColours.Remove(characterColour);
         player.GetComponent<EntityStatsController>().characterColour = characterColour;
     }
