@@ -69,7 +69,7 @@ public class CharacterOption
     public Texture skin;
 }
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, ISerializable
 {
     #region Singleton
     public static PlayerManager Instance;
@@ -383,6 +383,34 @@ public class PlayerManager : MonoBehaviour
         if (playerNumber >= 0 && playerNumber < _Players.Length)
         {
             _Players[playerNumber] = null;
+        }
+    }
+
+    public object Serialize()
+    {
+        // Save the player's class and character, then have players each reconnect their controllers
+        // and assign the correct player inputs to their corresponding character.
+        return new PlayerManagerData(NumPlayers);
+    }
+
+    public void FromSerialized(object data)
+    {
+        // Manually populate the players list with the player's class and characters, then go to a
+        // controller reconnect menu to assign each connected controller to their character.
+        throw new NotImplementedException();
+    }
+
+    // Class for serializing player data
+    [Serializable]
+    public class PlayerManagerData
+    {
+        public int numPlayers;
+        // player's classes
+        // player's characters
+
+        public PlayerManagerData(int numPlayers)
+        {
+            this.numPlayers = numPlayers;
         }
     }
 }

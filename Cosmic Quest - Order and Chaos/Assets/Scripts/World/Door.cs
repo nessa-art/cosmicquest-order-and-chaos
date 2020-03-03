@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Door : MonoBehaviour, ISerializable
+public class Door : MonoBehaviour
 {
     private AudioSource _audio;
     private Animator _anim;
     private BoxCollider _col;
 
-    public bool isOpen { get; private set; }
+    public bool IsOpen { get; private set; }
 
     private void Awake()
     {
@@ -18,9 +18,9 @@ public class Door : MonoBehaviour, ISerializable
 
     public void Open()
     {
-        if (!isOpen)
+        if (!IsOpen)
         {
-            isOpen = true;
+            IsOpen = true;
             StartCoroutine("OpenDoor");
         }
     }
@@ -40,15 +40,5 @@ public class Door : MonoBehaviour, ISerializable
         
         // Disable the door collider
         _col.enabled = false;
-    }
-
-    public string Serialize()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void FromSerialized(string s)
-    {
-        throw new System.NotImplementedException();
     }
 }

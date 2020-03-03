@@ -1,21 +1,20 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[System.Serializable]
 public class ChaosVoid : ScriptableObject, ISerializable
 {
     // Reference to the scene for this chaos void
     public Object scene;
     // List of chaos voids required to be completed before starting this one
-    public ChaosVoid[] prerequisites;
+    public List<ChaosVoid> prerequisites;
 
     // Returns whether all the prerequisite levels have been completed
-    public bool isLocked
+    public bool IsLocked
     {
         get
         {
-            return prerequisites.Count(cv => cv.cleared) < prerequisites.Length;
+            return prerequisites.Count(cv => cv.cleared) < prerequisites.Count;
         }
     }
 
@@ -39,13 +38,30 @@ public class ChaosVoid : ScriptableObject, ISerializable
         
     }
 
-    public string Serialize()
+    public object Serialize()
     {
-        throw new System.NotImplementedException();
+        return new ChaosVoidData(name, cleared, started);
     }
 
-    public void FromSerialized(string s)
+    public void FromSerialized(object data)
     {
-        throw new System.NotImplementedException();
+        cleared = ((ChaosVoidData) data).cleared;
+        started = ((ChaosVoidData) data).started;
+    }
+
+    // Class used for serializing data for saves
+    [System.Serializable]
+    public class ChaosVoidData
+    {
+        public string levelName;
+        public bool cleared;
+        public bool started;
+
+        public ChaosVoidData(string levelName, bool cleared, bool started)
+        {
+            this.levelName = levelName;
+            this.cleared = cleared;
+            this.started = started;
+        }
     }
 }

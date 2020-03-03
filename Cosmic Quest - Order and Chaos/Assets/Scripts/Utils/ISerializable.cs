@@ -1,17 +1,19 @@
-﻿/// <summary>
+﻿using System;
+
+/// <summary>
 /// Interface for serializable objects whose state should be included in save and load.
 /// </summary>
 public interface ISerializable
 {
     /// <summary>
-    /// Abstract function for serializing class data to a JSON string.
+    /// Abstract function for serializing class data.
     /// </summary>
-    /// <returns>Serialized JSON string of the class data</returns>
-    string Serialize();
+    /// <returns>Serialized class data object</returns>
+    object Serialize();
 
     /// <summary>
-    /// Initializes a class from a serialized string of data.
+    /// Loads class data from a serialized data class.
     /// </summary>
-    /// <param name="s">String of JSON encoded class data</param>
-    void FromSerialized(string s);
+    /// <param name="data">Serialized data class to load from</param>
+    void FromSerialized(object data);
 }
