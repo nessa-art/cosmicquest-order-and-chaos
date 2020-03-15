@@ -5,11 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public enum SceneType {
-        Level,
-        Menu,
-        Map
-    }
     #region Singleton
     public static LevelManager Instance;
 
@@ -59,13 +54,13 @@ public class LevelManager : MonoBehaviour
     public void StartTutorial()
     {
         // Load Tutorial scene
-        StartCoroutine(LoadYourAsyncScene("Tutorial", SceneType.Level));
+        StartCoroutine(LoadYourAsyncScene("Tutorial", true));
     }
     
     public void StartTestLevel()
     {
         // TODO DELETE ME
-        StartCoroutine(LoadYourAsyncScene("ChaosVoid1", SceneType.Level));
+        StartCoroutine(LoadYourAsyncScene("ChaosVoid1", true));
     }
 
     /// <summary>
@@ -74,7 +69,7 @@ public class LevelManager : MonoBehaviour
     public void StartLevelMenu()
     {
         // TODO if tutorial is skipped then should be taken to the level selection map
-        StartCoroutine(LoadYourAsyncScene("LevelsScene", SceneType.Map));
+        StartCoroutine(LoadYourAsyncScene("LevelMenu"));
     }
 
     /// <summary>
@@ -83,7 +78,7 @@ public class LevelManager : MonoBehaviour
     /// <param name="chaosVoid">Reference to the chaos void level to load</param>
     public void StartChaosVoid(ChaosVoid chaosVoid)
     {
-        StartCoroutine(LoadYourAsyncScene(chaosVoid.scene.name, SceneType.Level));
+        StartCoroutine(LoadYourAsyncScene(chaosVoid.scene.name, true));
         chaosVoid.Initialize();
     }
 
@@ -92,7 +87,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void RestartCurrentLevel()
     {
-        StartCoroutine(LoadYourAsyncScene(SceneManager.GetActiveScene().name, SceneType.Level));
+        StartCoroutine(LoadYourAsyncScene(SceneManager.GetActiveScene().name, true));
         // TODO initialize chaos void
     }
 
@@ -107,7 +102,7 @@ public class LevelManager : MonoBehaviour
 
     public void BackToMenu()
     {
-        StartCoroutine(LoadYourAsyncScene("MenuStaging", SceneType.Menu));
+        StartCoroutine(LoadYourAsyncScene("MenuStaging"));
     }
 
     /// <summary>
@@ -116,24 +111,14 @@ public class LevelManager : MonoBehaviour
     /// <param name="sceneName">Name of the scene to load</param>
     /// <param name="isLevel">Whether the scene being loaded is a level</param>
     /// <returns>An IEnumerator</returns>
-    private IEnumerator LoadYourAsyncScene(string sceneName, SceneType sceneType = SceneType.Menu)
+    private IEnumerator LoadYourAsyncScene(string sceneName, bool isLevel = false)
     {
         GameManager.Instance.SetLoadingState();
         
         // Start the loading screen
         _anim.SetTrigger("Show");
-
-        // Set time back to 1 for when players pause the game and go back to the main menu
-        Time.timeScale = 1;
         yield return new WaitForSeconds(0.5f);
-
-        // check if scene has already been loaded, if it has then set it to active
-        Scene loadedScene = SceneManager.GetSceneByName(sceneName);
-        if (loadedScene.IsValid())
-        {
-            SceneManager.SetActiveScene(loadedScene);
-            yield break;
-        }
+        
         // Load the scene asynchronously
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
@@ -145,14 +130,12 @@ public class LevelManager : MonoBehaviour
         
         // Hide the loading screen
         _anim.SetTrigger("Hide");
-        Debug.Log("SceneLoaded");
-        // Set the new game state after loading is finished
-        if (sceneType == SceneType.Level)
-            GameManager.Instance.SetPlayState();
-        else if (sceneType == SceneType.Menu)
-            GameManager.Instance.SetMenuState();
-        else if (sceneType == SceneType.Map)
-            GameManager.Instance.SetSelectingLevelState();
         yield return new WaitForSeconds(0.5f);
+
+        // Set the new game state after loading is finished
+        if (isLevel)
+            GameManager.Instance.SetPlayState();
+        else
+            GameManager.Instance.SetMenuState();
     }
 }
