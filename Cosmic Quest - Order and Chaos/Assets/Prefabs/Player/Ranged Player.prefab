@@ -2325,6 +2325,8 @@ MonoBehaviour:
     type: 0
     delay: 0
     loop: 0
+  trajectoryIndicatorPrefab: {fileID: 9157185116791405800, guid: 8b20befda0c4d8e4995dac019d5c7be0,
+    type: 3}
 --- !u!82 &1753851880
 AudioSource:
   m_ObjectHideFlags: 0

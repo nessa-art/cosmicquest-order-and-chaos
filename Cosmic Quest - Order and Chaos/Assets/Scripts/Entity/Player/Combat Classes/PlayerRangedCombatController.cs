@@ -47,6 +47,8 @@ public class PlayerRangedCombatController : PlayerCombatController
     public float secondaryAttackMovementModifier = 0.1f;
     [Tooltip("Weapon audio effect for secondary attack")]
     [SerializeField] protected AudioHelper.EntityAudioClip secondaryAttackWeaponSFX;
+    public GameObject trajectoryIndicatorPrefab;
+    private GameObject trajectoryIndicator;
 
     private bool _isPrimaryCharging;
     private float _primaryChargeTime;
@@ -93,6 +95,7 @@ public class PlayerRangedCombatController : PlayerCombatController
                 Vector3 pt = CalculatePosition(Time.fixedDeltaTime * i / 2, vel * transform.forward, transform.position + offset);
                 trajectoryPoints.Add(pt);
                 Vector3 dir = trajectoryPoints.Count > 1 ? (pt - trajectoryPoints[i - 1]).normalized : transform.forward;
+                trajectoryIndicator.transform.position = pt;
                 if (Physics.Raycast(pt, dir, out RaycastHit hit, 0.5f))
                 {
                     // stop adding points if it hits a collider that isn't a trigger
@@ -103,7 +106,6 @@ public class PlayerRangedCombatController : PlayerCombatController
                 }
             }
             trajectoryRenderer.positionCount = trajectoryPoints.Count;
-            
         }
         else
         {
@@ -212,16 +214,24 @@ public class PlayerRangedCombatController : PlayerCombatController
 
         if (value.isPressed)
         {
+            if (trajectoryIndicator == null)
+            {
+                trajectoryIndicator = Instantiate(trajectoryIndicatorPrefab, transform);
+            }
+            else
+            {
+                trajectoryIndicator.SetActive(true);
+            }
             Interaction.StopInteract();
             _isPrimaryCharging = true;
             _primaryChargeTime = 0f;
             Anim.SetBool("PrimaryAttack", true);
             StartCoroutine(AudioHelper.PlayAudioOverlap(WeaponAudio, primaryAttackChargeWeaponSFX));
             Motor.ApplyMovementModifier(primaryAttackMovementModifier);
-
         }
         else if (_isPrimaryCharging)
         {
+            trajectoryIndicator.SetActive(false);
             _isPrimaryCharging = false;
             Anim.SetBool("PrimaryAttack", false);
             AudioHelper.StopAudio(WeaponAudio);
