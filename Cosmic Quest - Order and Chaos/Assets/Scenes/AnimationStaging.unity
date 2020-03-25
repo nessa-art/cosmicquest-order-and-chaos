@@ -193,6 +193,16 @@ PrefabInstance:
       propertyPath: testPlayers.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3452966858472943330, guid: 5ada5cb459c910a49a019ebe4fc41835,
+        type: 3}
+      propertyPath: testPlayers.Array.data[0].combatClass
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3452966858472943330, guid: 5ada5cb459c910a49a019ebe4fc41835,
+        type: 3}
+      propertyPath: testPlayers.Array.data[1].combatClass
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ada5cb459c910a49a019ebe4fc41835, type: 3}
 --- !u!1001 &347415092
@@ -671,7 +681,7 @@ PrefabInstance:
     - target: {fileID: 2774360075866465687, guid: 8a3a8de1f6c3076439e3cbfc5adf3a5a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.89
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2774360075866465687, guid: 8a3a8de1f6c3076439e3cbfc5adf3a5a,
         type: 3}
@@ -1074,7 +1084,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 1638098372696826093, guid: 3159dc286d80a6240873bebbdcd6feb8, type: 3}
 --- !u!1001 &1993335514

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,7 +20,7 @@ public class PlayerRangedCombatController : PlayerCombatController
     [Tooltip("The maximum force to launch the primary attack projectile at")]
     public float primaryAttackMaxLaunchForce = 800f;
     [Tooltip("The delay before the arrow projectile is launched")]
-    public float primaryAttackLaunchDelay = 0.3f;
+    public float primaryAttackLaunchDelay = 0;
     [Tooltip("The curve of charge time versus damage and range")]
     public AnimationCurve primaryAttackEffectCurve;
     [Tooltip("The amount of the player's mana depleted (and necessary) per attack")]
@@ -50,31 +51,79 @@ public class PlayerRangedCombatController : PlayerCombatController
     private bool _isPrimaryCharging;
     private float _primaryChargeTime;
 
+    // arrow trajectory
+    private LineRenderer trajectoryRenderer;
+    private int numOfTrajectoryPoints = 100;
+    private List<Vector3> trajectoryPoints;
+    private float projectileMass;
+    private float chargePercent;
+    private float primaryAttackLaunchForce;
+
+    protected override void Start()
+    {
+        base.Start();
+        trajectoryRenderer = GetComponent<LineRenderer>();
+        trajectoryPoints = new List<Vector3>();
+        trajectoryRenderer.material = new Material(Shader.Find("Standard"));
+        trajectoryRenderer.startColor = PlayerManager.colours.GetColour(Stats.characterColour);
+        trajectoryRenderer.endColor = Color.white;
+        trajectoryRenderer.material.color = PlayerManager.colours.GetColour(Stats.characterColour);
+        projectileMass = primaryProjectilePrefab.GetComponent<Rigidbody>().mass;
+    }
+
     protected override void Update()
     {
         base.Update();
-
         // Handle attack charge ups
         if (_isPrimaryCharging)
         {
-            _primaryChargeTime += Time.deltaTime;
+            _primaryChargeTime += Time.fixedDeltaTime;
             if (_primaryChargeTime > primaryAttackChargeTime)
             {
                 // Clamp to max charge time
                 _primaryChargeTime = primaryAttackChargeTime;
             }
+            // calculate trajectory points
+            chargePercent = Mathf.InverseLerp(0f, primaryAttackChargeTime, _primaryChargeTime);
+            primaryAttackLaunchForce = Mathf.Lerp(primaryAttackMinLaunchForce, primaryAttackMaxLaunchForce, primaryAttackEffectCurve.Evaluate(chargePercent));
+            float vel = primaryAttackLaunchForce * Time.fixedDeltaTime / projectileMass;
+            Vector3 offset = new Vector3(0, Projectile.ProjectileHeight, 0) + transform.forward;
+            for (int i = 0; i < numOfTrajectoryPoints; i++)
+            {
+                Vector3 pt = CalculatePosition(Time.fixedDeltaTime * i / 2, vel * transform.forward, transform.position + offset);
+                trajectoryPoints.Add(pt);
+                Vector3 dir = trajectoryPoints.Count > 1 ? (pt - trajectoryPoints[i - 1]).normalized : transform.forward;
+                if (Physics.Raycast(pt, dir, out RaycastHit hit, 0.5f))
+                {
+                    // stop adding points if it hits a collider that isn't a trigger
+                    if (!hit.collider.isTrigger)
+                    {
+                        break;
+                    }
+                }
+            }
+            trajectoryRenderer.positionCount = trajectoryPoints.Count;
+            
         }
+        else
+        {
+            trajectoryRenderer.positionCount = 0;
+        }
+        trajectoryRenderer.SetPositions(trajectoryPoints.ToArray());
+        trajectoryPoints.Clear();
+        
     }
+
     /// <summary>
     /// Ranger's primary attack
     /// </summary>
     protected override void PrimaryAttack()
     {
-        float chargePercent = Mathf.InverseLerp(0f, primaryAttackChargeTime, _primaryChargeTime);
+        //float chargePercent = Mathf.InverseLerp(0f, primaryAttackChargeTime, _primaryChargeTime);
         float baseDamage = Stats.damage.GetValue();
 
         float damageValue = primaryAttackEffectCurve.Evaluate(chargePercent) * Random.Range(primaryAttackMinDamage + baseDamage, primaryAttackMaxDamage + baseDamage);
-        float primaryAttackLaunchForce = Mathf.Lerp(primaryAttackMinLaunchForce, primaryAttackMaxLaunchForce, primaryAttackEffectCurve.Evaluate(chargePercent));
+        //float primaryAttackLaunchForce = Mathf.Lerp(primaryAttackMinLaunchForce, primaryAttackMaxLaunchForce, primaryAttackEffectCurve.Evaluate(chargePercent));
 
         // Launch projectile in the direction the player is facing
         StartCoroutine(LaunchProjectile(primaryProjectilePrefab, transform.forward, primaryAttackLaunchForce, primaryAttackRange, damageValue, primaryAttackLaunchDelay));
@@ -169,6 +218,7 @@ public class PlayerRangedCombatController : PlayerCombatController
             Anim.SetBool("PrimaryAttack", true);
             StartCoroutine(AudioHelper.PlayAudioOverlap(WeaponAudio, primaryAttackChargeWeaponSFX));
             Motor.ApplyMovementModifier(primaryAttackMovementModifier);
+
         }
         else if (_isPrimaryCharging)
         {
@@ -179,5 +229,9 @@ public class PlayerRangedCombatController : PlayerCombatController
             Motor.ResetMovementModifier();
             PrimaryAttack();
         }
+    }
+    private Vector3 CalculatePosition(float elapsedTime, Vector3 velocity, Vector3 initialPosition)
+    {
+        return Physics.gravity * elapsedTime * elapsedTime * 0.5f + velocity * elapsedTime + initialPosition;
     }
 }
