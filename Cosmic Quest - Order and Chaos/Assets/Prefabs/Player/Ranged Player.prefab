@@ -2325,8 +2325,6 @@ MonoBehaviour:
     type: 0
     delay: 0
     loop: 0
-  primaryAttackPathIndicatorPrefab: {fileID: 1607489160101874, guid: 1220774a6e4cd454aa215fc9dfec7f4a,
-    type: 3}
 --- !u!82 &1753851880
 AudioSource:
   m_ObjectHideFlags: 0

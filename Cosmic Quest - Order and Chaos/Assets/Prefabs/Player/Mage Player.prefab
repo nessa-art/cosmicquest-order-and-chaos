@@ -2441,6 +2441,9 @@ MonoBehaviour:
     delay: 0
     loop: 0
   statBars: {fileID: 1164971088324141264}
+  playerDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6347770635181394817
 MonoBehaviour:
   m_ObjectHideFlags: 0
