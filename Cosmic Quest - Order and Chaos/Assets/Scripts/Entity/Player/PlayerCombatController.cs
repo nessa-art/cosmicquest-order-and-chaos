@@ -11,6 +11,11 @@ public class PlayerCombatController : EntityCombatController
     [Tooltip("The minimal cooldown between consecutive attacks. This value should be larger than the time it takes for the entire attack animation")]
     public float secondaryAttackTimeout;
 
+    protected bool chargingUltimate = false;
+    protected int ultimateAbilityChargeAmount = 0;
+    protected float timeSinceLastCharge = 0;
+    protected float chargeThreshold = 0;
+
     protected PlayerMotorController Motor;
     protected PlayerInteractionController Interaction;
 
@@ -18,6 +23,21 @@ public class PlayerCombatController : EntityCombatController
     {
         Motor = GetComponent<PlayerMotorController>();
         Interaction = GetComponent<PlayerInteractionController>();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (chargingUltimate)
+        {
+            timeSinceLastCharge += Time.deltaTime;
+            if (timeSinceLastCharge > chargeThreshold)
+            {
+                chargingUltimate = false;
+                ultimateAbilityChargeAmount = 0;
+                Anim.SetBool("UltimateAbility", false);
+            }
+        }
     }
     /// <summary>
     /// Player's primary attack placeholder
@@ -138,7 +158,11 @@ public class PlayerCombatController : EntityCombatController
         // Only trigger ability on button down by default
         if (value.isPressed)
         {
-            UltimateAbility();
+            chargingUltimate = true;
+            ultimateAbilityChargeAmount += 1;
+            timeSinceLastCharge = 0;
+            Anim.SetBool("UltimateAbility", true);
+            //UltimateAbility();
         }
     }
 

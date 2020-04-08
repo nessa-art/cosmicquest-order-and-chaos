@@ -42,7 +42,7 @@ public class ActionPuzzle : Puzzle
         /// <summary>
         /// Whether the action has been completed or not
         /// </summary>
-        private bool completed;
+        protected bool completed;
 
         /// <summary>
         /// Marks the action as completed
@@ -119,38 +119,38 @@ public class ActionPuzzle : Puzzle
     }
 
     [Tooltip("UI overlay for displaying an action to complete")]
-    [SerializeField] private RectTransform actionOverlay;
+    [SerializeField] protected RectTransform actionOverlay;
+    [Tooltip("Actions required to be performed in order for the puzzle to complete")]
+    [SerializeField] protected RequiredAction[] requiredActions;
     [Tooltip("Animator controllers for each player's action-completed checkmark")]
     [SerializeField] private Animator[] playerCheckmarkAnims;
-    [Tooltip("Actions required to be performed in order for the puzzle to complete")]
-    [SerializeField] private RequiredAction[] requiredActions;
 
     /// <summary>
-    /// List of device ids that have completed the current action
+    /// Dictionary that tracks devices that completed the current action and how many times the action was completed
     /// </summary>
-    private List<int> completedActionIds;
+    protected Dictionary<int, int> completedActions;
 
     /// <summary>
     /// List of player inputs to listen to
     /// </summary>
-    private List<PlayerInput> playerInputs;
+    protected List<PlayerInput> playerInputs;
 
     /// <summary>
     /// List of player classes
     /// Rationale: For displaying class specific dialogue
     /// </summary>
-    private List<string> playerClasses;
+    protected List<string> playerClasses;
 
     /// <summary>
     /// Maintains which action is currently being listened for
     /// </summary>
-    private int currentAction;
+    protected int currentAction;
 
     protected override void Start()
     {
         base.Start();
         StartCoroutine(DisableOverlay(0));
-        completedActionIds = new List<int>();
+        completedActions = new Dictionary<int, int>();
         playerInputs = new List<PlayerInput>();
         playerClasses = new List<string>();
         currentAction = -1;
@@ -166,7 +166,7 @@ public class ActionPuzzle : Puzzle
     /// Add a player input to this puzzle
     /// </summary>
     /// <param name="_playerInput">Player's input</param>
-    public virtual void AddPlayerInput(PlayerInput _playerInput)
+    public void AddPlayerInput(PlayerInput _playerInput)
     {
         int _deviceId = _playerInput.devices.FirstOrDefault().deviceId;
         // check if the player input has been added already
@@ -222,7 +222,7 @@ public class ActionPuzzle : Puzzle
     /// </summary>
     /// <param name="className">Name of a player class</param>
     /// <returns>The dialogue trigger for a specific player class, null if not found</returns>
-    private DialogueTrigger GetClassSpecificDialogue(string className)
+    protected DialogueTrigger GetClassSpecificDialogue(string className)
     {
         switch (className)
         {
@@ -242,10 +242,10 @@ public class ActionPuzzle : Puzzle
     /// <summary>
     /// Set up the puzzle
     /// </summary>
-    protected void Setup()
+    protected virtual void Setup()
     {
-        // empty the list of device ids that have completed the actions
-        completedActionIds.Clear();
+        // empty the dictionary of device ids that have completed the actions
+        completedActions.Clear();
         for (int i = 0; i < playerInputs.Count; i++)
         {
             ReadOnlyArray<InputAction> inputActions = playerInputs[i].currentActionMap.actions;
@@ -263,7 +263,7 @@ public class ActionPuzzle : Puzzle
     /// <summary>
     /// Listen for events from the player action map
     /// </summary>
-    public void ListenForActions()
+    public virtual void ListenForActions()
     {
         // hide player checkmarks
         foreach (Animator animator in playerCheckmarkAnims)
@@ -285,7 +285,7 @@ public class ActionPuzzle : Puzzle
     /// <summary>
     /// Stop listening for events from the player action map
     /// </summary>
-    public void StopListeningForActions()
+    public virtual void StopListeningForActions()
     {
         // Remove the listener for the currently required action
         for (int i = 0; i < playerInputs.Count; i++)
@@ -300,9 +300,9 @@ public class ActionPuzzle : Puzzle
     /// Registers that a device with `deviceId` has completed the currently required action
     /// </summary>
     /// <param name="deviceId">Id of the device that completed the action</param>
-    private void CompleteAction(int deviceId)
+    protected virtual void CompleteAction(int deviceId)
     {
-        if (completedActionIds.Contains(deviceId))
+        if (completedActions.ContainsKey(deviceId))
             return;
 
         int playerNumber = PlayerManager.Instance.GetPlayerNumber(deviceId);
@@ -313,20 +313,20 @@ public class ActionPuzzle : Puzzle
             requiredActions[currentAction].SetComplete();
         }
         
-        completedActionIds.Add(deviceId);
+        completedActions.Add(deviceId, 1);
 
         // Complete if all players have performed the currently required action
-        if (completedActionIds.Count == playerInputs.Count)
+        if (completedActions.Count == playerInputs.Count)
         {
             StopListeningForActions();
             SetComplete();
         }
-    } 
+    }
 
     /// <summary>
     /// Disable the currently required action for all players
     /// </summary>
-    private void DisableCurrentAction()
+    protected void DisableCurrentAction()
     {   
         if (currentAction == -1)
             return;
@@ -353,6 +353,37 @@ public class ActionPuzzle : Puzzle
     }
 
     /// <summary>
+    /// Disable all actions on each player's action map
+    /// </summary>
+    public void DisableAllActions()
+    {
+        foreach (PlayerInput playerInput in playerInputs)
+        {
+            foreach (InputAction inputAction in playerInput.currentActionMap.actions)
+            {
+                inputAction.Disable();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Enables a single action on each player's action map
+    /// </summary>
+    public void EnableAction(string actionName)
+    {
+        foreach (PlayerInput playerInput in playerInputs)
+        {
+            foreach (InputAction inputAction in playerInput.currentActionMap.actions)
+            {
+                if (inputAction.name == actionName)
+                {
+                    inputAction.Enable();
+                }
+            }
+        }
+    }
+
+    /// <summary>
     /// Enable the action that follows the current one
     /// </summary>
     public void EnableNextAction()
@@ -364,7 +395,7 @@ public class ActionPuzzle : Puzzle
             nextAction.Enable();
         }
         currentAction += 1;
-        completedActionIds.Clear();
+        completedActions.Clear();
     }
 
     /// <summary>

@@ -130,7 +130,7 @@ public class PlayerMageCombatController : PlayerCombatController
     protected override void UltimateAbility()
     {
         // TODO implement melee class ultimate ability
-        Anim.SetTrigger("UltimateAbility");
+        Anim.SetBool("UltimateAbility", true);
     }
     /// <summary>
     /// Toggle the primary attack based on the input value

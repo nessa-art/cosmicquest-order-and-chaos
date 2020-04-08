@@ -64,7 +64,7 @@ public class @GameControls : IInputActionCollection, IDisposable
                     ""id"": ""c9be423e-0edd-45eb-857e-3609d971d47d"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""PauseGame"",
