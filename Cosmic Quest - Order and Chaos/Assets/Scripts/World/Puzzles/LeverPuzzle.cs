@@ -13,11 +13,9 @@ public class LeverPuzzle : Puzzle
     protected List<CharacterColour> Received;
 
     protected override void Start()
-    {      
+    {
         base.Start();
-
         Received = new List<CharacterColour>();
-
         foreach (Lever lever in levers)
         {
             // Subscribe to lever activation events
@@ -31,7 +29,6 @@ public class LeverPuzzle : Puzzle
     /// <param name="colour">Colour to add to the buffer</param>
     protected virtual void AddColour(CharacterColour colour)
     {
-        Debug.Log("AddColour LeverPuzzle: " + colour);
         if (isComplete)
             return;
 

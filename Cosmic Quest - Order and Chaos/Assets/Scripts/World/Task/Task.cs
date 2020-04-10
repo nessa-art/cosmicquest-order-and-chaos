@@ -14,7 +14,7 @@ public class Task : MonoBehaviour
     /// <summary>
     /// Doors in the task area
     /// </summary>
-    public Door[] doors;
+    protected Door[] doors;
 
     /// <summary>
     /// Indicates whether the task completed or not
