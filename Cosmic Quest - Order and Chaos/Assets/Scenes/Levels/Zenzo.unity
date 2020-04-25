@@ -12769,7 +12769,7 @@ Transform:
   m_LocalScale: {x: 9.760705, y: 1.9040843, z: 0.03368327}
   m_Children: []
   m_Father: {fileID: 1511609203}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 165.37001, z: 0}
 --- !u!4 &656355914 stripped
 Transform:
@@ -18155,11 +18155,16 @@ PrefabInstance:
     - target: {fileID: 3452966858472943330, guid: 5ada5cb459c910a49a019ebe4fc41835,
         type: 3}
       propertyPath: testPlayers.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3452966858472943330, guid: 5ada5cb459c910a49a019ebe4fc41835,
         type: 3}
       propertyPath: testPlayers.Array.data[1].combatClass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3452966858472943330, guid: 5ada5cb459c910a49a019ebe4fc41835,
+        type: 3}
+      propertyPath: testPlayers.Array.data[0].combatClass
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -19856,7 +19861,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1511609203}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1078862224
 MonoBehaviour:
@@ -28357,8 +28362,8 @@ Transform:
   - {fileID: 2071100472}
   - {fileID: 2067356634}
   - {fileID: 134156521}
-  - {fileID: 648904884}
   - {fileID: 1078862223}
+  - {fileID: 648904884}
   - {fileID: 1163335890}
   m_Father: {fileID: 421694149}
   m_RootOrder: 4
@@ -30201,7 +30206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625656607}
   m_LocalRotation: {x: -0, y: 0.058619976, z: -0, w: 0.9982804}
-  m_LocalPosition: {x: -31.91, y: -4.64, z: 41.11}
+  m_LocalPosition: {x: -31.91, y: -7.9, z: 41.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1797851096}
@@ -30231,8 +30236,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 43.209755, y: 1, z: 1}
-  m_Center: {x: -0.12769413, y: 0, z: 0.0000000013204409}
+  m_Size: {x: 52.688225, y: 9.772302, z: 24.846134}
+  m_Center: {x: 4.6115417, y: 4.3860364, z: 10.944145}
 --- !u!114 &1625656611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32493,7 +32498,6 @@ GameObject:
   - component: {fileID: 1797851097}
   - component: {fileID: 1797851099}
   - component: {fileID: 1797851100}
-  - component: {fileID: 1797851102}
   - component: {fileID: 1797851101}
   - component: {fileID: 1797851103}
   m_Layer: 0
@@ -32655,8 +32659,8 @@ MonoBehaviour:
     name: 'Leol:'
     sentences:
     - 'We are now on the grounds of Zenzo: the planet of life.'
-    - Those levers you see in front of you may come in handy for navigating this planet.
-    - Stay alert and proceed cautiously, Vanguard...
+    - Those levers might come in handy later... let's move forward. Stay alert and
+      proceed cautiously, Vanguard...
     onComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -32678,27 +32682,6 @@ MonoBehaviour:
     sentences:
     - Well - that certainly did something.
     - Looks like 2 gates have opened. Pick your path wisely, Vanguard..
-    onComplete:
-      m_PersistentCalls:
-        m_Calls: []
---- !u!114 &1797851102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797851095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMusicOnPlay: 0
-  dialogue:
-    name: 'Leol:'
-    sentences:
-    - The platforms have been activated!!
-    - I wonder if there's any information we can take from this for the levers...
     onComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -34700,8 +34683,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 32.10718, y: 1, z: 1}
-  m_Center: {x: 0.69852024, y: 0, z: -0.0000026199964}
+  m_Size: {x: 32.10718, y: 1.0000001, z: 21.26326}
+  m_Center: {x: 0.6985207, y: 0, z: 7.8573875}
 --- !u!4 &1923459892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 311864849, guid: 520dcf3eeaa6d5f4193b957ed0678b24,
