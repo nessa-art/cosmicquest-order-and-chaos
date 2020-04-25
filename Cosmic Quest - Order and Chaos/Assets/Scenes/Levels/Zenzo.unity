@@ -9341,6 +9341,8 @@ Transform:
   - {fileID: 1529222707}
   - {fileID: 514924458}
   - {fileID: 1768552284}
+  - {fileID: 983610743}
+  - {fileID: 699435275}
   m_Father: {fileID: 421694149}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9518,6 +9520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
   dialogue:
     name: 'Leol:'
     sentences:
@@ -10704,7 +10707,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38180
+  m_Name: pb_Mesh38316
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13019,7 +13022,7 @@ Transform:
   m_LocalScale: {x: 13.400015, y: 2.4229474, z: 0.04286187}
   m_Children: []
   m_Father: {fileID: 1797851096}
-  m_RootOrder: 16
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &659999932
 PrefabInstance:
@@ -13557,7 +13560,7 @@ Transform:
   m_LocalScale: {x: 15.929946, y: 2.4229474, z: 0.0428619}
   m_Children: []
   m_Father: {fileID: 1797851096}
-  m_RootOrder: 17
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 165.23901, z: 0}
 --- !u!4 &686642572 stripped
 Transform:
@@ -13634,6 +13637,86 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 520dcf3eeaa6d5f4193b957ed0678b24, type: 3}
+--- !u!1 &699435274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 699435275}
+  - component: {fileID: 699435278}
+  - component: {fileID: 699435277}
+  - component: {fileID: 699435276}
+  m_Layer: 0
+  m_Name: LeverHintDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &699435275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699435274}
+  m_LocalRotation: {x: -0, y: 0.027558204, z: -0, w: 0.9996202}
+  m_LocalPosition: {x: -23.9, y: 89.34238, z: -117.3}
+  m_LocalScale: {x: 15.2385, y: 15.2385, z: 15.2385}
+  m_Children: []
+  m_Father: {fileID: 434067479}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 3.1580002, z: 0}
+--- !u!65 &699435276
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699435274}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.579627, y: 1, z: 3.0574}
+  m_Center: {x: -0.19039167, y: 0, z: 0.033799693}
+--- !u!114 &699435277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699435274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
+  dialogue:
+    name: 'Leol:'
+    sentences:
+    - There are some more chaocytes in this zone... beware, Vanguard.
+    - Maybe their colour ordering would be good to take into account here, too.
+    onComplete:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &699435278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699435274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b4301d7bcb2ed4c96393c493c49ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 699435277}
 --- !u!4 &702043349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4806872650656697229, guid: ff77bf24f4dfd89478742f2e7513b0b6,
@@ -18346,6 +18429,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 982052310}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &983610742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 983610743}
+  - component: {fileID: 983610746}
+  - component: {fileID: 983610745}
+  - component: {fileID: 983610744}
+  m_Layer: 0
+  m_Name: LeverDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &983610743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983610742}
+  m_LocalRotation: {x: -0, y: 0.027558204, z: -0, w: 0.9996202}
+  m_LocalPosition: {x: 29.4, y: 89.34238, z: -128.2}
+  m_LocalScale: {x: 15.238501, y: 15.238499, z: 15.238501}
+  m_Children: []
+  m_Father: {fileID: 434067479}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &983610744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983610742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
+  dialogue:
+    name: 'Leol:'
+    sentences:
+    - Some more levers... what was the colour ordering for those chaocytes again?
+    onComplete:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &983610745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983610742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b4301d7bcb2ed4c96393c493c49ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 983610744}
+--- !u!65 &983610746
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983610742}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.75768673, y: 1, z: 0.8932494}
+  m_Center: {x: -0.19914864, y: 0, z: -0.029536303}
 --- !u!1001 &987171905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19330,11 +19492,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
   dialogue:
     name: 'Leol:'
     sentences:
-    - Well done, Vanguard. You've defeated all of Rhak's chaocytes with ease.
-    - It is now time to face Treant.
+    - Well done, Vanguard. You've defeated all of Rhak's chaocytes.
+    - An arduous mission this was - but it is now time to face Treant.
     - Make way your back to Zone 1 (where you started). There is a passageway east
       of where you stood.
     - The fate of Zenzo lies in your hands.
@@ -19662,6 +19825,87 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1077475596}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1078862222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1078862223}
+  - component: {fileID: 1078862226}
+  - component: {fileID: 1078862225}
+  - component: {fileID: 1078862224}
+  m_Layer: 0
+  m_Name: ZoneDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1078862223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078862222}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.4, y: 0, z: -29.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1511609203}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1078862224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078862222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
+  dialogue:
+    name: 'Leol:'
+    sentences:
+    - Watchout Vanguard! More chaocytes.
+    - These seem different... your attacks may be useless against them. What could
+      be done about this?
+    onComplete:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &1078862225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078862222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b4301d7bcb2ed4c96393c493c49ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 0}
+--- !u!65 &1078862226
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078862222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 73.72225, y: 1.0000001, z: 55.70157}
+  m_Center: {x: -2.619057, y: 0, z: 2.0194037}
 --- !u!1001 &1080595052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21574,6 +21818,86 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 671991451}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1148824018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1148824019}
+  - component: {fileID: 1148824022}
+  - component: {fileID: 1148824021}
+  - component: {fileID: 1148824020}
+  m_Layer: 0
+  m_Name: ZoneDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1148824019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148824018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.8, y: 5.2, z: -28.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1301656152}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1148824020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148824018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
+  dialogue:
+    name: 'Leol:'
+    sentences:
+    - Seems like this area also has a couple of platforms... but no rocks?
+    - What could be used instead to activate the platforms here...?
+    onComplete:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &1148824021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148824018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b4301d7bcb2ed4c96393c493c49ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 0}
+--- !u!65 &1148824022
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148824018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 102.534584, y: 8.573923, z: 36.17734}
+  m_Center: {x: -3.7746663, y: -1.0940129, z: 15.568865}
 --- !u!1001 &1153765184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21682,6 +22006,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1163335889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1163335890}
+  - component: {fileID: 1163335891}
+  m_Layer: 0
+  m_Name: RockPuzzleCompleteDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1163335890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163335889}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1511609203}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1163335891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163335889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
+  dialogue:
+    name: 'Leol:'
+    sentences:
+    - Seems like that removed the invincibility barriers on the Chaocytes!
+    onComplete:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1168889046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23899,7 +24274,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1301656152}
   - component: {fileID: 1301656153}
-  - component: {fileID: 1301656156}
   - component: {fileID: 1301656154}
   m_Layer: 0
   m_Name: Task2
@@ -23925,6 +24299,7 @@ Transform:
   - {fileID: 1028085772}
   - {fileID: 1372595791}
   - {fileID: 1865198854}
+  - {fileID: 1148824019}
   m_Father: {fileID: 421694149}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24011,29 +24386,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
   dialogue:
     name: 'Leol:'
     sentences:
     - 'Thinking beyond the scope of the rules is a crucial skill, Vanguard. '
     - We shall continue.
-    onComplete:
-      m_PersistentCalls:
-        m_Calls: []
---- !u!114 &1301656156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301656151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    name: 
-    sentences: []
     onComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -24874,6 +25232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
   dialogue:
     name: 'Leol:'
     sentences:
@@ -27041,6 +27400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 973304405}
+  playMusicOnStart: 1
 --- !u!4 &1442998932
 Transform:
   m_ObjectHideFlags: 0
@@ -27629,6 +27989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
   dialogue:
     name: 'Leol:'
     sentences:
@@ -27997,6 +28358,8 @@ Transform:
   - {fileID: 2067356634}
   - {fileID: 134156521}
   - {fileID: 648904884}
+  - {fileID: 1078862223}
+  - {fileID: 1163335890}
   m_Father: {fileID: 421694149}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28015,7 +28378,7 @@ MonoBehaviour:
   onCompletion:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1511609207}
+      - m_Target: {fileID: 1163335891}
         m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
@@ -28094,6 +28457,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1511609207}
+        m_MethodName: TriggerDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onReset:
     m_PersistentCalls:
       m_Calls: []
@@ -28130,10 +28504,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
   dialogue:
     name: 'Leol:'
     sentences:
-    - Seems like that removed the invincibility barriers on the Chaocytes!!
+    - Another obstacle overcome. Well done, Vanguard. Let's move on.
     onComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -29799,6 +30174,87 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 679729071}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1625656607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1625656608}
+  - component: {fileID: 1625656610}
+  - component: {fileID: 1625656609}
+  - component: {fileID: 1625656611}
+  m_Layer: 0
+  m_Name: Zone2Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1625656608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625656607}
+  m_LocalRotation: {x: -0, y: 0.058619976, z: -0, w: 0.9982804}
+  m_LocalPosition: {x: -31.91, y: -4.64, z: 41.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1797851096}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 6.721, z: 0}
+--- !u!114 &1625656609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625656607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b4301d7bcb2ed4c96393c493c49ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 1625656611}
+--- !u!65 &1625656610
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625656607}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 43.209755, y: 1, z: 1}
+  m_Center: {x: -0.12769413, y: 0, z: 0.0000000013204409}
+--- !u!114 &1625656611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625656607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
+  dialogue:
+    name: 'Leol:'
+    sentences:
+    - 'I see that there are some coloured platforms. Seems like must use something
+      to activate them... '
+    - The ordering of the colours might be important to note, too.
+    onComplete:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1626843068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32074,6 +32530,9 @@ Transform:
   - {fileID: 1371123285}
   - {fileID: 1617751915}
   - {fileID: 797133931}
+  - {fileID: 1625656608}
+  - {fileID: 1920690560}
+  - {fileID: 1814053372}
   - {fileID: 659697843}
   - {fileID: 686563056}
   m_Father: {fileID: 421694149}
@@ -32094,8 +32553,8 @@ MonoBehaviour:
   onCompletion:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1797851102}
-        m_MethodName: 
+      - m_Target: {fileID: 1814053373}
+        m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -32191,6 +32650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
   dialogue:
     name: 'Leol:'
     sentences:
@@ -32212,6 +32672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
   dialogue:
     name: 'Leol:'
     sentences:
@@ -32232,6 +32693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
   dialogue:
     name: 'Leol:'
     sentences:
@@ -32334,7 +32796,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38942
+  m_Name: pb_Mesh39116
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -32651,6 +33113,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56e5ad1985c4ff44bb394dfcab3c868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1814053371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1814053372}
+  - component: {fileID: 1814053373}
+  m_Layer: 0
+  m_Name: RockPuzzleCompleteDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1814053372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814053371}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1797851096}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1814053373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814053371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
+  dialogue:
+    name: 'Leol:'
+    sentences:
+    - All the platforms seem to be activated now.
+    - We still seem to be missing something though... perhaps those levers we saw
+      earlier might be our last clue.
+    onComplete:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1823021676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34107,6 +34622,86 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1cf665e4cff5be48a29db957865fc7c, type: 3}
+--- !u!1 &1920690559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1920690560}
+  - component: {fileID: 1920690563}
+  - component: {fileID: 1920690562}
+  - component: {fileID: 1920690561}
+  m_Layer: 0
+  m_Name: RockHintDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1920690560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920690559}
+  m_LocalRotation: {x: -0, y: -0.117763676, z: -0, w: 0.9930417}
+  m_LocalPosition: {x: -23.53, y: -4.2, z: 15.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1797851096}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: -13.526001, z: 0}
+--- !u!114 &1920690561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920690559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dec67bd2bf15c241bad2596059266d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMusicOnPlay: 0
+  dialogue:
+    name: 'Leol:'
+    sentences:
+    - Look, Vanguard - a coloured rock. One of you should be able to pick it up.
+    - 'It might come into use... '
+    onComplete:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &1920690562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920690559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b4301d7bcb2ed4c96393c493c49ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 1920690561}
+--- !u!65 &1920690563
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920690559}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 32.10718, y: 1, z: 1}
+  m_Center: {x: 0.69852024, y: 0, z: -0.0000026199964}
 --- !u!4 &1923459892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 311864849, guid: 520dcf3eeaa6d5f4193b957ed0678b24,
