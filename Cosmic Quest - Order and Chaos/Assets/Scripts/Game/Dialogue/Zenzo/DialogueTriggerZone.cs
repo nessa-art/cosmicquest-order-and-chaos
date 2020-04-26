@@ -38,4 +38,12 @@ public class DialogueTriggerZone : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playersInZone -= 1;
+        }
+    }
 }
