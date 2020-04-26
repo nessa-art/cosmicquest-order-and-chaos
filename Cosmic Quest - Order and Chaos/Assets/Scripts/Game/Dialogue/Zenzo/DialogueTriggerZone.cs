@@ -34,15 +34,8 @@ public class DialogueTriggerZone : MonoBehaviour
             if (shouldTrigger && playersInZone == numPlayers)
             {
                 dialogueTrigger.TriggerDialogue();
+                shouldTrigger = false;
             }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            shouldTrigger = false;
         }
     }
 }
